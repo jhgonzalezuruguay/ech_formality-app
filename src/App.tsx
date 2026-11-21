@@ -14,8 +14,8 @@ import {
 } from 'recharts';
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from 'react-katex';
-import modelParams from './ech_model_params.json';
-import trainSummary from './ech_train_summary.json';
+import modelParams from './ech_model_params_2.json';
+import trainSummary from './ech_train_summary_2.json';
 import lockedTest from './ech_locked_test.json';
 
 
