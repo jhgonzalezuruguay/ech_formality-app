@@ -1,0 +1,174 @@
+{
+  "calibration_bins": [
+    {
+      "bin": 1,
+      "bin_label": "0-10%",
+      "n": 668,
+      "mean_pred": 0.0539,
+      "observed_rate": 0.0569
+    },
+    {
+      "bin": 2,
+      "bin_label": "10-20%",
+      "n": 849,
+      "mean_pred": 0.1379,
+      "observed_rate": 0.1201
+    },
+    {
+      "bin": 3,
+      "bin_label": "20-30%",
+      "n": 535,
+      "mean_pred": 0.2551,
+      "observed_rate": 0.2393
+    },
+    {
+      "bin": 4,
+      "bin_label": "30-40%",
+      "n": 362,
+      "mean_pred": 0.3416,
+      "observed_rate": 0.3536
+    },
+    {
+      "bin": 5,
+      "bin_label": "40-50%",
+      "n": 2311,
+      "mean_pred": 0.459,
+      "observed_rate": 0.4444
+    },
+    {
+      "bin": 6,
+      "bin_label": "50-60%",
+      "n": 973,
+      "mean_pred": 0.5315,
+      "observed_rate": 0.5447
+    },
+    {
+      "bin": 7,
+      "bin_label": "60-70%",
+      "n": 1277,
+      "mean_pred": 0.6643,
+      "observed_rate": 0.7063
+    },
+    {
+      "bin": 8,
+      "bin_label": "70-80%",
+      "n": 1568,
+      "mean_pred": 0.7352,
+      "observed_rate": 0.7283
+    },
+    {
+      "bin": 9,
+      "bin_label": "80-90%",
+      "n": 2106,
+      "mean_pred": 0.8652,
+      "observed_rate": 0.8737
+    },
+    {
+      "bin": 10,
+      "bin_label": "90-100%",
+      "n": 10199,
+      "mean_pred": 0.9845,
+      "observed_rate": 0.9823
+    }
+  ],
+  "by_firm_size": [
+    {
+      "firm_size": "1_person",
+      "n": 5251,
+      "observed_rate": 0.3799,
+      "mean_pred": 0.3799
+    },
+    {
+      "firm_size": "2_to_4",
+      "n": 2968,
+      "observed_rate": 0.6263,
+      "mean_pred": 0.6263
+    },
+    {
+      "firm_size": "5_to_9",
+      "n": 1455,
+      "observed_rate": 0.8392,
+      "mean_pred": 0.8392
+    },
+    {
+      "firm_size": "10_to_49",
+      "n": 2827,
+      "observed_rate": 0.9505,
+      "mean_pred": 0.9505
+    },
+    {
+      "firm_size": "50_plus",
+      "n": 1756,
+      "observed_rate": 0.9863,
+      "mean_pred": 0.9863
+    },
+    {
+      "firm_size": "Public_Sector",
+      "n": 1123,
+      "observed_rate": 0.8166,
+      "mean_pred": 0.8166
+    },
+    {
+      "firm_size": "Not_Applicable_or_DK",
+      "n": 5468,
+      "observed_rate": 0.9956,
+      "mean_pred": 0.9956
+    }
+  ],
+  "by_occupation": [
+    {
+      "occupation": "Other",
+      "n": 11,
+      "observed_rate": 0.4545,
+      "mean_pred": 0.4545
+    },
+    {
+      "occupation": "Private Wage Worker",
+      "n": 16271,
+      "observed_rate": 0.7316,
+      "mean_pred": 0.7316
+    },
+    {
+      "occupation": "Public Employee",
+      "n": 1123,
+      "observed_rate": 0.8166,
+      "mean_pred": 0.8166
+    },
+    {
+      "occupation": "Self-Employed",
+      "n": 3443,
+      "observed_rate": 0.8798,
+      "mean_pred": 0.8798
+    }
+  ],
+  "by_poverty": [
+    {
+      "is_poor_income": 0,
+      "is_poor_multi": 0,
+      "n": 16874,
+      "observed_rate": 0.839,
+      "mean_pred": 0.8375
+    },
+    {
+      "is_poor_income": 0,
+      "is_poor_multi": 1,
+      "n": 1774,
+      "observed_rate": 0.4352,
+      "mean_pred": 0.4497
+    },
+    {
+      "is_poor_income": 1,
+      "is_poor_multi": 0,
+      "n": 1080,
+      "observed_rate": 0.575,
+      "mean_pred": 0.5989
+    },
+    {
+      "is_poor_income": 1,
+      "is_poor_multi": 1,
+      "n": 1120,
+      "observed_rate": 0.2714,
+      "mean_pred": 0.2484
+    }
+  ]
+}
