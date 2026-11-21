@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import {
   ResponsiveContainer,
   BarChart,
@@ -14,6 +14,13 @@ import {
 } from 'recharts';
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from 'react-katex';
+
+// Direct imports of your exported ECH 2025 JSON files
+// Place ech_model_params.json, ech_train_summary.json, and ech_locked_test.json
+// in the same directory as App.tsx (e.g., src/).
+import modelParams from './ech_model_params.json';
+import trainSummary from './ech_train_summary.json';
+import lockedTestData from './ech_locked_test.json';
 
 interface CoefficientRow {
   term: string;
@@ -111,7 +118,7 @@ const TERM_LABELS: Record<string, string> = {
   firm_sizePublic_Sector: 'Sector: Public Sector (vs. 1 Person)',
   firm_sizeNot_Applicable_or_DK: 'Firm Size: N/A or Unknown (vs. 1 Person)',
   'occ_for_modelSelf-Employed': 'Occupation: Self-Employed (vs. Private Wage)',
-  occ_for_modelOther: 'Occupation: Other (vs. Private Wage)',
+  'occ_for_modelOther': 'Occupation: Other (vs. Private Wage)',
   age: 'Age (per year)',
   education: 'Education Level (per unit)',
   household_size: 'Household Size (per member)',
@@ -157,7 +164,7 @@ export default function App() {
     'Prior Hypothesis: Public sector and larger private firms (50+ workers) dominate formal registration in Uruguay, while income and multidimensional poverty sharply reduce formality odds.'
   );
 
-  // Build coefficient lookup map from ech_model_params_2.json
+  // Build coefficient lookup map from ech_model_params.json
   const coefMap = useMemo(() => {
     const map: Record<string, number> = {};
     (modelParams.coefficients as CoefficientRow[]).forEach((row) => {
