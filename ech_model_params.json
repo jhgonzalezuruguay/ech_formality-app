@@ -1,0 +1,101 @@
+{
+  "dataset_source": "ECH 2025 (INE Uruguay) - Real Data",
+  "split_seed": 2025,
+  "n_total": 26059,
+  "n_train": 20848,
+  "n_locked_test": 5211,
+  "train_base_rate": 0.7605,
+  "train_log10_score": -2837.78,
+  "train_avg_log10_score": -0.1361,
+  "train_null_log10_score": -4984.3,
+  "reference_levels": {
+    "firm_size": "1_person",
+    "occupation": "Private Wage Worker"
+  },
+  "coefficients": [
+    {
+      "term": "(Intercept)",
+      "estimate": -2.3555,
+      "std_error": 0.301,
+      "odds_ratio": 0.0948
+    },
+    {
+      "term": "firm_size2_to_4",
+      "estimate": 1.0208,
+      "std_error": 0.0523,
+      "odds_ratio": 2.7755
+    },
+    {
+      "term": "firm_size5_to_9",
+      "estimate": 2.1973,
+      "std_error": 0.085,
+      "odds_ratio": 9.0005
+    },
+    {
+      "term": "firm_size10_to_49",
+      "estimate": 3.5104,
+      "std_error": 0.0978,
+      "odds_ratio": 33.4628
+    },
+    {
+      "term": "firm_size50_plus",
+      "estimate": 4.7213,
+      "std_error": 0.2121,
+      "odds_ratio": 112.3172
+    },
+    {
+      "term": "firm_sizePublic_Sector",
+      "estimate": 1.9217,
+      "std_error": 0.0884,
+      "odds_ratio": 6.8325
+    },
+    {
+      "term": "firm_sizeNot_Applicable_or_DK",
+      "estimate": 5.7081,
+      "std_error": 0.2081,
+      "odds_ratio": 301.3003
+    },
+    {
+      "term": "occ_for_modelSelf-Employed",
+      "estimate": 0.715,
+      "std_error": 0.071,
+      "odds_ratio": 2.0442
+    },
+    {
+      "term": "occ_for_modelOther",
+      "estimate": -0.2715,
+      "std_error": 0.7345,
+      "odds_ratio": 0.7622
+    },
+    {
+      "term": "age",
+      "estimate": -0.0023,
+      "std_error": 0.0016,
+      "odds_ratio": 0.9977
+    },
+    {
+      "term": "education",
+      "estimate": 0.3463,
+      "std_error": 0.0457,
+      "odds_ratio": 1.4138
+    },
+    {
+      "term": "household_size",
+      "estimate": 0.1082,
+      "std_error": 0.0172,
+      "odds_ratio": 1.1143
+    },
+    {
+      "term": "is_poor_income",
+      "estimate": -0.9915,
+      "std_error": 0.0682,
+      "odds_ratio": 0.371
+    },
+    {
+      "term": "is_poor_multi",
+      "estimate": -1.8369,
+      "std_error": 0.0645,
+      "odds_ratio": 0.1593
+    }
+  ]
+}
