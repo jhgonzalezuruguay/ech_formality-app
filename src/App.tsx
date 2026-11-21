@@ -20,7 +20,7 @@ import { BlockMath, InlineMath } from 'react-katex';
 // in the same directory as App.tsx (e.g., src/).
 import modelParams from './ech_model_params_2.json';
 import trainSummary from './ech_train_summary_2.json';
-import lockedTestData from './ech_locked_test.json';
+import lockedTest from './ech_locked_test.json';
 
 interface CoefficientRow {
   term: string;
