@@ -1,15 +1,13 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ECH 2025 — Formalidad Laboral en Uruguay</title>
+    <title>ech_formality_app</title>
   </head>
   <body>
-    <main style="max-width: 820px; margin: 40px auto; font-family: system-ui, sans-serif; font-size: 16px; line-height: 1.6; padding: 0 16px;">
-      <h1>Predicción de Formalidad Laboral (ECH 2025 — Uruguay)</h1>
-      <p>Archivos de datos y código cargados en el repositorio: <code>App.tsx</code>, <code>ech_model_params_2.json</code>, <code>ech_train_summary_2.json</code> y <code>ech_locked_test.json</code>.</p>
-      <p>Nota: como <code>App.tsx</code> está escrito en React/TypeScript con <code>Recharts</code> y <code>KaTeX</code>, el navegador no ejecuta <code>.tsx</code> directamente sin un paso de compilación (Vite/Node), pero los archivos ya quedan publicados en el repositorio.</p>
-    </main>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
