@@ -19,10 +19,10 @@ import trainSummary from './ech_train_summary.json';
 import lockedTest from './ech_locked_test.json';
 
 // Direct imports of your exported ECH 2025 JSON files
-// Place ech_model_params_2.json, ech_train_summary_2.json, and ech_locked_test.json
+// Place ech_model_params.json, ech_train_summary.json, and ech_locked_test.json
 // in the same directory as App.tsx (e.g., src/).
-import modelParams from './ech_model_params_2.json';
-import trainSummary from './ech_train_summary_2.json';
+import modelParams from './ech_model_params.json';
+import trainSummary from './ech_train_summary.json';
 import lockedTestData from './ech_locked_test.json';
 
 interface CoefficientRow {
