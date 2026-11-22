@@ -59,6 +59,7 @@ interface LockedTestRow {
   age: number;
   edu: number;
   hh: number;
+  tenure: number;
   pi: number;
   pm: number;
 }
@@ -122,6 +123,7 @@ const TERM_LABELS: Record<string, string> = {
   age: 'Age (per year)',
   education: 'Education Level (per unit)',
   household_size: 'Household Size (per member)',
+  tenure_years: 'Job Tenure (per year, f307/f308)',
   is_poor_income: 'Income Poverty (Yes = 1)',
   is_poor_multi: 'Multidimensional Poverty (Yes = 1)',
 };
@@ -153,6 +155,7 @@ export default function App() {
   const [calcAge, setCalcAge] = useState<number>(38);
   const [calcEducation, setCalcEducation] = useState<number>(3);
   const [calcHouseholdSize, setCalcHouseholdSize] = useState<number>(3);
+  const [calcTenureYears, setCalcTenureYears] = useState<number>(3);
   const [calcPoorIncome, setCalcPoorIncome] = useState<boolean>(false);
   const [calcPoorMulti, setCalcPoorMulti] = useState<boolean>(false);
 
@@ -161,7 +164,7 @@ export default function App() {
   const [testUnlocked, setTestUnlocked] = useState<boolean>(false);
   const [testResults, setTestResults] = useState<TestEvaluationResult | null>(null);
   const [reflectionNotes, setReflectionNotes] = useState<string>(
-    'Prior Hypothesis: Public sector and larger private firms (50+ workers) dominate formal registration in Uruguay, while income and multidimensional poverty sharply reduce formality odds.'
+    'Prior Hypothesis: Public sector, longer job tenure, and larger private firms (50+ workers) increase formality probability in Uruguay, while income and multidimensional poverty reduce formality odds.'
   );
 
   // Build coefficient lookup map from ech_model_params.json
@@ -181,6 +184,7 @@ export default function App() {
       age: number;
       edu: number;
       hh: number;
+      tenure: number;
       pi: number;
       pm: number;
     }) => {
@@ -202,6 +206,7 @@ export default function App() {
       z += (coefMap['age'] ?? 0) * params.age;
       z += (coefMap['education'] ?? 0) * params.edu;
       z += (coefMap['household_size'] ?? 0) * params.hh;
+      z += (coefMap['tenure_years'] ?? 0) * params.tenure;
       z += (coefMap['is_poor_income'] ?? 0) * params.pi;
       z += (coefMap['is_poor_multi'] ?? 0) * params.pm;
 
@@ -217,6 +222,7 @@ export default function App() {
       age: calcAge,
       edu: calcEducation,
       hh: calcHouseholdSize,
+      tenure: calcTenureYears,
       pi: calcPoorIncome ? 1 : 0,
       pm: calcPoorMulti ? 1 : 0,
     });
@@ -227,6 +233,7 @@ export default function App() {
     calcAge,
     calcEducation,
     calcHouseholdSize,
+    calcTenureYears,
     calcPoorIncome,
     calcPoorMulti,
   ]);
@@ -307,6 +314,7 @@ export default function App() {
         age: row.age,
         edu: row.edu,
         hh: row.hh,
+        tenure: row.tenure ?? 0,
         pi: row.pi,
         pm: row.pm,
       });
@@ -478,7 +486,8 @@ export default function App() {
             <InlineMath math="Y_i = 1" /> means formal registration in BPS/pension coverage,{' '}
             <code>f82 == 1</code>). We model <InlineMath math="Y_i" /> as a Bernoulli random
             variable whose probability <InlineMath math="p_i" /> is determined on the log-odds
-            scale by workplace structure, occupation, human capital, and household poverty:
+            scale by workplace structure, occupation, human capital, job tenure, and household
+            poverty:
           </p>
           <div
             style={{
@@ -491,7 +500,7 @@ export default function App() {
           >
             <BlockMath
               math={
-                'Y_i \\sim \\text{Bernoulli}(p_i), \\qquad \\log\\!\\left(\\frac{p_i}{1 - p_i}\\right) = \\beta_0 + \\mathbf{x}_{\\text{firm},i}^{\\top}\\boldsymbol{\\beta}_{\\text{firm}} + \\mathbf{x}_{\\text{occ},i}^{\\top}\\boldsymbol{\\beta}_{\\text{occ}} + \\beta_{\\text{age}}\\text{Age}_i + \\beta_{\\text{edu}}\\text{Edu}_i + \\beta_{\\text{hh}}\\text{HH}_i + \\beta_{\\text{pi}}\\text{PoorInc}_i + \\beta_{\\text{pm}}\\text{PoorMulti}_i'
+                'Y_i \\sim \\text{Bernoulli}(p_i), \\qquad \\log\\!\\left(\\frac{p_i}{1 - p_i}\\right) = \\beta_0 + \\mathbf{x}_{\\text{firm},i}^{\\top}\\boldsymbol{\\beta}_{\\text{firm}} + \\mathbf{x}_{\\text{occ},i}^{\\top}\\boldsymbol{\\beta}_{\\text{occ}} + \\beta_{\\text{age}}\\text{Age}_i + \\beta_{\\text{edu}}\\text{Edu}_i + \\beta_{\\text{hh}}\\text{HH}_i + \\beta_{\\text{ten}}\\text{Tenure}_i + \\beta_{\\text{pi}}\\text{PoorInc}_i + \\beta_{\\text{pm}}\\text{PoorMulti}_i'
               }
             />
           </div>
@@ -601,9 +610,10 @@ export default function App() {
             2. Interactive Worker Formality Calculator (Trained Parameters)
           </h2>
           <p style={{ fontSize: '16px', marginTop: 0, marginBottom: '20px' }}>
-            Adjust a worker&apos;s workplace and socioeconomic attributes to compute their predicted
-            probability of formal employment <InlineMath math="P(\text{is\_formal} = 1 \mid \mathbf{x})" />{' '}
-            directly from the parameters fitted on the 80% training set.
+            Adjust a worker&apos;s workplace, tenure, and socioeconomic attributes to compute their
+            predicted probability of formal employment{' '}
+            <InlineMath math="P(\text{is\_formal} = 1 \mid \mathbf{x})" /> directly from the
+            parameters fitted on the 80% training set.
           </p>
 
           <div
@@ -669,6 +679,26 @@ export default function App() {
                   <option value="Self-Employed">Self-Employed</option>
                   <option value="Other">Other</option>
                 </select>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="calc-tenure"
+                  style={{ display: 'block', fontWeight: 600, fontSize: '16px', marginBottom: '6px' }}
+                >
+                  Job Tenure (<code>f307</code>/<code>f308</code>):{' '}
+                  <strong>{calcTenureYears} years</strong>
+                </label>
+                <input
+                  id="calc-tenure"
+                  type="range"
+                  min={0}
+                  max={50}
+                  step={0.5}
+                  value={calcTenureYears}
+                  onChange={(e) => setCalcTenureYears(Number(e.target.value))}
+                  style={{ width: '100%', accentColor: '#1d4ed8', cursor: 'pointer' }}
+                />
               </div>
 
               <div>
@@ -831,10 +861,10 @@ export default function App() {
                 }}
               >
                 <strong>Interpretation:</strong> Among 100 Uruguayan workers with this exact
-                profile, our model expects roughly{' '}
-                <strong>{Math.round(livePrediction.prob * 100)}</strong> to hold formal registration
-                and <strong>{100 - Math.round(livePrediction.prob * 100)}</strong> to work
-                informally.
+                profile (including <strong>{calcTenureYears}</strong> years of job tenure), our model
+                expects roughly <strong>{Math.round(livePrediction.prob * 100)}</strong> to hold
+                formal registration and <strong>{100 - Math.round(livePrediction.prob * 100)}</strong>{' '}
+                to work informally.
               </div>
             </div>
           </div>
