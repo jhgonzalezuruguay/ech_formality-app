@@ -38,10 +38,15 @@ jobs:
           BASE_PATH: "/ech_formality-app/"
         run: npm run build
 
+      - name: Verify build output
+        run: test -f dist/index.html
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          path: "./dist"
+          name: github-pages
+          path: dist
+          if-no-files-found: error
 
       - name: Deploy to GitHub Pages
         id: deployment
