@@ -12,15 +12,31 @@ import {
   Line,
   ReferenceLine,
 } from 'recharts';
+import katex from 'katex';
 import 'katex/dist/katex.min.css';
-import { BlockMath, InlineMath } from 'react-katex';
 
 // Direct imports of your exported ECH 2025 JSON files
 // Place ech_model_params.json, ech_train_summary.json, and ech_locked_test.json
-// in the same directory as App.tsx (e.g., src/).
+// in the same directory as App.tsx (e.g., app/).
 import modelParams from './ech_model_params.json';
 import trainSummary from './ech_train_summary.json';
 import lockedTestData from './ech_locked_test.json';
+
+function InlineMath({ math }: { math: string }) {
+  const html = useMemo(
+    () => katex.renderToString(math, { throwOnError: false, displayMode: false }),
+    [math]
+  );
+  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
+function BlockMath({ math }: { math: string }) {
+  const html = useMemo(
+    () => katex.renderToString(math, { throwOnError: false, displayMode: true }),
+    [math]
+  );
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+}
 
 interface CoefficientRow {
   term: string;
